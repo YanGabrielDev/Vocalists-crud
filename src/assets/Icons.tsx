@@ -2,6 +2,7 @@ export const Trash = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
+    height="19px"
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
@@ -19,6 +20,7 @@ export const Edit = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
+    height="19px"
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"

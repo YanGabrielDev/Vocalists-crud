@@ -1,18 +1,24 @@
-
 import Client from "../../core/Client";
-import {Edit, Trash} from '../../assets/Icons'
+import { Edit, Trash } from "../../assets/Icons";
 
 interface TableInterface {
   clients: Client[];
+  clientSelect?: (client: Client) => void;
+  clientDelet?: (client: Client) => void;
 }
-export const Table = ({ clients }: TableInterface) => {
+export const Table = ({
+  clients,
+  clientDelet,
+  clientSelect,
+}: TableInterface) => {
+  const showButtons = clientDelet || clientSelect
   const renderHeader = () => {
     return (
       <tr>
         <th className="text-left p-4">Código</th>
         <th className="text-left p-4">Nome</th>
         <th className="text-left p-4">Idade</th>
-        <th className="p-4">Ações</th>
+        {showButtons ? (<th className="p-4">Ações</th>) : false}
       </tr>
     );
   };
@@ -29,20 +35,36 @@ export const Table = ({ clients }: TableInterface) => {
           <td className="text-left p-4">{client.id}</td>
           <td className="text-left p-4">{client.name}</td>
           <td className="text-left p-4">{client.age}</td>
-          {renderActions(client)}
+          {showButtons ? renderActions(client) : false}
         </tr>
       );
     });
   };
   const renderActions = (client: Client) => {
     return (
-      <td>
-        <button className="flex justify-center items-center text-red-500">
-          {Trash}
-        </button>
-        <button>
-          {Edit}
-        </button>
+      <td className="flex justify-center items-center p-4">
+        {clientSelect ? (
+          <button
+           onClick={() => clientSelect(client)}
+            className={`flex justify-center items-center text-green-600 rounded-full p-2 hover:bg-blue-50`}
+          >
+            {Edit}
+          </button>
+        ) : (
+          false
+        )}
+        {clientDelet ? (
+          <button
+            onClick={() => clientDelet(client)}
+            className={`
+            flex justify-center items-center text-red-600 rounded-full p-2 hover:bg-blue-50
+        `}
+          >
+            {Trash}
+          </button>
+        ) : (
+          false
+        )}
       </td>
     );
   };
