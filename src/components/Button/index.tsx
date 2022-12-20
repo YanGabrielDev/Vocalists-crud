@@ -1,19 +1,22 @@
 import { ReactNode } from "react";
-
-interface ButtonInterface {
-  col?: 'gray' | 'green' | 'blue';
+import {ButtonHTMLAttributes} from 'react'
+interface ButtonInterface{
+  col?: string;
   children: ReactNode;
-  className?: string;
-}
-export const Button = ({ children, className, col }: ButtonInterface) => {
+  className?:string,
+  onClick?: () => void
+
+} 
+export const Button = ({ children, onClick, className, col }: ButtonInterface) => {
   const buttonColor = col ? col : 'gray'
   return (
     <div>
 
     <button className={
-    `text-white bg-gradient-to-l 
-     from-${buttonColor}-400 
-     to-${buttonColor}-800 px-4 py-2 rounded-md ${className}`}
+    `text-white bg-gradient-to-r
+     from-${col}-400 
+     to-${col}-800 px-4 py-2 rounded-md ${className}`}
+     onClick={onClick}
     >
       {children}
     </button>
