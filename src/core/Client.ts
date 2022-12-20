@@ -1,5 +1,5 @@
 export default class Client {
-     #id: string
+     #id?: string
      #name: string
      #age: number
 
