@@ -1,5 +1,4 @@
 import { text } from "stream/consumers"
-
 interface EntryInterface{
     text: string,
     type: 'text' | 'number',
